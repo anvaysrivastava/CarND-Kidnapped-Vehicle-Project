@@ -60,6 +60,8 @@ public:
 	 *   standard deviation of yaw [rad]]
 	 */
 	void init(double x, double y, double theta, double std[]);
+  
+  void addNoise(Particle& particle, double std[]);
 
 	/**
 	 * prediction Predicts the state for the next time step
