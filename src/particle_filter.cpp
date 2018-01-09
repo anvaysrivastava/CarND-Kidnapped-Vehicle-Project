@@ -28,12 +28,7 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	// Add random Gaussian noise to each particle.
 	// NOTE: Consult particle_filter.h for more information about this method (and others in this file).
   num_particles = 101;
-  
-  // define normal distributions for sensor noise
-//  normal_distribution<double> normal_x(0, std[0]);
-//  normal_distribution<double> normal_y(0, std[1]);
-//  normal_distribution<double> normal_theta(0, std[2]);
-  
+ 
   // init particles
   for (int i = 0; i < num_particles; i++) {
     Particle p;
@@ -66,8 +61,6 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	//  http://en.cppreference.com/w/cpp/numeric/random/normal_distribution
 	//  http://www.cplusplus.com/reference/random/default_random_engine/
   
- 
-  
   for (int i = 0; i < num_particles; i++) {
     
     // to avoid divide by 0
@@ -80,17 +73,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
       particles[i].y += velocity / yaw_rate * (cos(particles[i].theta) - cos(particles[i].theta + yaw_rate*delta_t));
       particles[i].theta += yaw_rate * delta_t;
     }
-    
     addNoise(particles[i],std_pos);
-    
-    // add noise
-//    normal_distribution<double> normal_x(0, std_pos[0]);
-//    normal_distribution<double> normal_y(0, std_pos[1]);
-//    normal_distribution<double> normal_theta(0, std_pos[2]);
-    
-//    particles[i].x += normal_x(gen);
-//    particles[i].y += normal_y(gen);
-//    particles[i].theta += normal_theta(gen);
   }
 
 }
